@@ -29,7 +29,14 @@
             font-family: 'Bebas Neue', Arial, sans-serif;
         }
 
+        .form-group {
+            position: relative;
+        }
+
         #suggestions {
+            width: 100%;
+            top: 100%;
+            left: 0;
             padding: 0;
             display: none;
             position: absolute;
@@ -38,9 +45,7 @@
             z-index: 1000;
             background: white;
             max-height: 200px;
-            width: 38%;
             overflow-y: auto;
-            font-size: large;
         }
 
         #suggestions li {
@@ -148,6 +153,7 @@
                 .then(response => response.json())
                 .then(suggestions => {
                     if (suggestions.length) {
+                        suggestionsBox.classList.add("suggestions");
                         suggestionsBox.innerHTML = suggestions.map(title =>
                             `<li onclick="selectMovie('${title.replace(/'/g, "\\'")}')" >${title}</li>`
                         ).join('');
